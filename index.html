@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>西部縱貫鐵路模擬器 官方網站</title>
+    <title>台灣西部縱貫鐵路模擬器 官方網站</title>
     <style>
         /* *************************************** */
         /* 現代科技風格基礎設定 */
@@ -194,7 +194,7 @@
 </head>
 <body>
     <header>
-        <h1>西部縱貫鐵路模擬器</h1>
+        <h1>台灣西部縱貫鐵路模擬器</h1>
         <p id="status-message">:: SYSTEM BOOT SEQUENCE INITIATED ::</p>
     </header>
 
@@ -211,7 +211,7 @@
         <main>
             <div id="Overview" class="tab-content active">
                 <h2>[SYSTEM] 專案概述 / PROJECT OVERVIEW</h2>
-                <p>「台灣西部環境鐵道模擬器」是一款以台灣西部縱貫線為核心、強調環境與地方特色還原的鐵道模擬體驗。玩家可操作車輛、體驗站務與營運規劃，或在開放伺服器與其他玩家共同建構與維護路網。</p>
+                <p>「台灣西部縱貫鐵路模擬器」是一款以台灣西部縱貫線為核心、強調環境與地方特色還原的鐵道模擬體驗。玩家可操作車輛、體驗站務與營運規劃，或在開放伺服器與其他玩家共同建構與維護路網。</p>
             </div>
 
             <div id="Features" class="tab-content">
@@ -285,13 +285,27 @@
             
             startButton.disabled = true;
             startButton.textContent = '載入中...';
-            startButton.style.backgroundColor = '#FFD700'; // 變成黃色
+            startButton.style.backgroundColor = '#FFD700'; 
             startButton.style.boxShadow = '0 0 15px rgba(255, 215, 0, 0.5)';
             
             // 模擬系統載入時間
             setTimeout(function() {
                 statusElement.textContent = ':: TRAIN OPERATIONAL SYSTEM ONLINE ::';
                 startButton.textContent = '系統已啟動';
+                startButton.style.backgroundColor = '#FF0000'; 
+                startButton.style.boxShadow = '0 0 15px rgba(255, 0, 0, 0.5)';
+                startButton.style.cursor = 'default';
+            }, 1500);
+        }
+        
+        document.addEventListener("DOMContentLoaded", function(event) {
+            // 確保頁面載入時 Overview Tab 是啟動的
+        });
+
+    </script>
+</body>
+</html>
+';
                 startButton.style.backgroundColor = '#FF0000'; // 變成紅色 (已啟動狀態)
                 startButton.style.boxShadow = '0 0 15px rgba(255, 0, 0, 0.5)';
                 startButton.style.cursor = 'default';
