@@ -6,41 +6,59 @@
     <title>台灣西部縱貫鐵路模擬器 官方網站</title>
     <style>
         /* *************************************** */
-        /* 現代科技風格基礎設定 */
+        /* 全局設定 & 酷炫背景 */
         /* *************************************** */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212;
+            background: linear-gradient(-45deg, #0d1a26, #0a0a0a, #1a0d26, #0a0a0a); 
+            background-size: 400% 400%; 
+            animation: gradientBG 15s ease infinite; 
             color: #e0e0e0;
             transition: background-color 0.5s;
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column; 
         }
+
+        /* 漸變背景動畫 */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
             width: 80%;
             max-width: 1100px;
-            margin: auto;
+            margin: 20px auto; 
             overflow: hidden;
-            background: #1e1e1e;
+            background: rgba(30, 30, 30, 0.9); 
             padding: 20px 40px;
             border: 1px solid #00FFFF33;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+            border-radius: 12px; 
+            flex-grow: 1; 
         }
         header {
-            background: linear-gradient(180deg, #1e1e1e, #0a0a0a);
+            background: rgba(10, 10, 10, 0.7); 
             color: #00FFFF;
             padding: 25px 0;
             text-align: center;
             margin-bottom: 30px;
             border-bottom: 3px solid #00FFFF;
-            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+            border-radius: 0 0 10px 10px; 
+            position: sticky; 
+            top: 0;
+            z-index: 1000; 
         }
         header h1 {
             margin: 0;
             font-size: 3em;
             letter-spacing: 5px;
-            text-shadow: 0 0 8px #00FFFF;
+            text-shadow: 0 0 10px #00FFFF; 
         }
         header p {
             color: #a0a0a0;
@@ -53,21 +71,25 @@
             margin-top: 20px;
             font-size: 1.8em;
         }
+        p {
+            line-height: 1.6; 
+        }
         ul {
             list-style: none;
             padding: 0;
         }
         ul li {
-            background: #2a2a2a;
+            background: rgba(42, 42, 42, 0.8); 
             margin-bottom: 12px;
             padding: 15px;
             border-left: 4px solid #00FFFF;
-            box-shadow: 0 0 5px rgba(0, 255, 255, 0.15);
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.2); 
             transition: transform 0.3s, background 0.3s;
+            border-radius: 4px;
         }
         ul li:hover {
-            background: #3a3a3a;
-            transform: translateY(-2px);
+            background: rgba(58, 58, 58, 0.9);
+            transform: translateY(-3px); 
         }
         a {
             color: #00FFFF;
@@ -84,37 +106,41 @@
             margin-top: 40px;
             color: #555;
             font-size: 0.8em;
+            background: rgba(10, 10, 10, 0.7); 
+            border-top: 1px solid #00FFFF33;
+            border-radius: 10px 10px 0 0;
         }
         
         /* *************************************** */
-        /* 互動內容 - 分頁 CSS 樣式 */
+        /* 互動內容 - 分頁 CSS 樣式 (省略未修改部分) */
         /* *************************************** */
         .tabs {
             border-bottom: 2px solid #00FFFF;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap; 
         }
         .tab-button {
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8);
             color: #e0e0e0;
             border: none;
             padding: 12px 20px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
             flex-grow: 1;
-            margin: 0 2px;
+            margin: 0 2px 5px 2px; 
             text-transform: uppercase;
             letter-spacing: 1px;
             border-radius: 5px 5px 0 0;
         }
         .tab-button:hover {
-            background-color: #444;
+            background-color: rgba(68, 68, 68, 0.9);
         }
         .tab-button.active {
             background-color: #00FFFF;
             color: #121212;
-            box-shadow: 0 -4px 10px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 -4px 12px rgba(0, 255, 255, 0.6); 
             font-weight: bold;
         }
         .tab-content {
@@ -131,15 +157,13 @@
         }
 
         /* *************************************** */
-        /* 啟動按鈕 / Roblox 專屬按鈕 CSS */
+        /* 啟動按鈕 / Roblox 專屬按鈕 CSS (省略未修改部分) */
         /* *************************************** */
         .button-group {
             text-align: center;
             margin-bottom: 20px;
         }
-        .start-button {
-            background-color: #00FF00;
-            color: #121212;
+        .start-button, .roblox-button {
             border: none;
             padding: 15px 30px;
             font-size: 1.2em;
@@ -149,6 +173,12 @@
             transition: background-color 0.3s, box-shadow 0.3s, transform 0.1s;
             margin: 10px;
             display: inline-block;
+            text-decoration: none; 
+            font-weight: bold;
+        }
+        .start-button {
+            background-color: #00FF00;
+            color: #121212;
         }
         .start-button:hover {
             background-color: #39FF39;
@@ -156,21 +186,14 @@
             transform: scale(1.05);
         }
         .roblox-button {
-            background-color: #555;
+            background-color: #7289DA; 
             color: white;
-            border: 2px solid #555;
-            padding: 12px 25px;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            margin: 10px;
-            display: inline-block;
-            text-decoration: none; /* 確保連結樣式正常 */
+            box-shadow: 0 0 15px rgba(114, 137, 218, 0.5);
         }
         .roblox-button:hover {
-            background-color: #777;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            background-color: #839ADC;
+            box-shadow: 0 0 25px rgba(114, 137, 218, 0.8);
+            transform: scale(1.05);
         }
         .roblox-info {
             color: #FFD700;
@@ -179,23 +202,28 @@
             text-align: center;
             padding: 10px;
             border: 1px dashed #FFD70033;
+            background: rgba(50, 50, 0, 0.1); 
+            border-radius: 5px;
         }
 
 
         /* *************************************** */
-        /* 火車動畫效果 CSS (持續運行，霓虹化) */
+        /* 火車動畫效果 CSS (修正顯示問題) */
         /* *************************************** */
         @keyframes trainMove {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100vw); }
         }
         .train-track {
-            height: 5px;
+            height: 50px; /* **增加軌道高度**，讓火車有足夠的空間顯示 */
             background: #444;
             margin-top: 20px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+            margin-left: 0; /* 修正 margin 讓它保持全寬 */
+            margin-right: 0;
+            width: 100%;
         }
         .train-effect {
             width: 150px;
@@ -204,13 +232,13 @@
             border: 2px solid #00FFFF;
             border-radius: 2px;
             position: absolute;
-            bottom: -25px; 
+            bottom: 5px; /* **將 bottom 向上調整**，讓火車出現在軌道上方 */
             box-shadow: 0 0 10px #00FFFF;
             animation: trainMove 8s linear infinite;
         }
 
         /* *************************************** */
-        /* 內容區域滑入效果 CSS */
+        /* 內容區域滑入效果 CSS (省略未修改部分) */
         /* *************************************** */
         @keyframes slideInFromLeft {
             0% { opacity: 0; transform: translateY(20px); }
@@ -218,6 +246,50 @@
         }
         .container main {
             animation: slideInFromLeft 0.8s ease-out forwards;
+        }
+
+        /* *************************************** */
+        /* 手機適配響應式設計 (Responsive Design) */
+        /* *************************************** */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%; 
+                padding: 15px;
+                margin: 10px auto;
+            }
+            header h1 {
+                font-size: 2em; 
+                letter-spacing: 2px;
+            }
+            header p {
+                font-size: 0.9em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .tab-button {
+                flex-basis: 48%; 
+                margin-bottom: 8px; 
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+            .button-group button, .button-group a {
+                font-size: 1em; 
+                padding: 12px 20px;
+                margin: 5px;
+            }
+            .roblox-info {
+                font-size: 0.85em;
+            }
+            .train-effect {
+                width: 100px; 
+                height: 20px;
+            }
+            .train-track {
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -330,7 +402,7 @@
         }
         
         document.addEventListener("DOMContentLoaded", function(event) {
-            // 自動選擇第一個 Tab
+            // 頁面載入時的初始化邏輯
         });
     </script>
 </body>
