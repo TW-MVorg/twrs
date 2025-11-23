@@ -3,157 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台灣西部縱貫鐵路模擬器 官方網站</title>
+    <title>台灣西部縱貫鐵路模擬器 官方網站 | T.W.R.S.</title>
     <style>
+        /* *************************************** */
+        /* 現代科技風格基礎設定 */
+        /* *************************************** */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #121212;
+            color: #e0e0e0;
+            transition: background-color 0.5s;
         }
         .container {
             width: 80%;
+            max-width: 1100px;
             margin: auto;
             overflow: hidden;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #1e1e1e;
+            padding: 20px 40px;
+            border: 1px solid #00FFFF33;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
         }
         header {
-            background: #2a6a9b;
-            color: white;
-            padding: 15px 0;
+            background: linear-gradient(180deg, #1e1e1e, #0a0a0a);
+            color: #00FFFF;
+            padding: 25px 0;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #00FFFF;
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
         }
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 3em;
+            letter-spacing: 5px;
+            text-shadow: 0 0 8px #00FFFF;
+        }
+        header p {
+            color: #a0a0a0;
+            font-style: italic;
         }
         h2 {
-            color: #d84315;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
-            margin-top: 30px;
+            color: #00FFFF;
+            border-bottom: 2px solid #00FFFF55;
+            padding-bottom: 8px;
+            margin-top: 20px; /* 調整，因為上方有 Tab */
+            font-size: 1.8em;
         }
         ul {
             list-style: none;
             padding: 0;
         }
         ul li {
-            background: #e9e9e9;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-left: 5px solid #2a6a9b;
+            background: #2a2a2a;
+            margin-bottom: 12px;
+            padding: 15px;
+            border-left: 4px solid #00FFFF;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.15);
+            transition: transform 0.3s, background 0.3s;
+        }
+        ul li:hover {
+            background: #3a3a3a;
+            transform: translateY(-2px);
         }
         a {
-            color: #2a6a9b;
+            color: #00FFFF;
             text-decoration: none;
+            transition: color 0.3s;
         }
         a:hover {
             text-decoration: underline;
+            color: #99FFFF;
         }
         footer {
             text-align: center;
-            padding: 10px;
-            margin-top: 30px;
-            color: #777;
-            font-size: 0.9em;
+            padding: 15px;
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.8em;
+        }
+        
+        /* *************************************** */
+        /* 互動內容 - 分頁 CSS 樣式 */
+        /* *************************************** */
+        .tabs {
+            border-bottom: 2px solid #00FFFF;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .tab-button {
+            background-color: #333;
+            color: #e0e0e0;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            flex-grow: 1;
+            margin: 0 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab-button:hover {
+            background-color: #444;
+        }
+        .tab-button.active {
+            background-color: #00FFFF;
+            color: #121212;
+            box-shadow: 0 -4px 10px rgba(0, 255, 255, 0.5);
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none; /* 預設隱藏所有內容 */
+            padding: 20px 0;
+            animation: fadeIn 0.5s ease-out; /* 內容淡入動畫 */
+        }
+        .tab-content.active {
+            display: block; /* 顯示當前選中的內容 */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* *************************************** */
-        /* 火車動畫效果 CSS (持續運行) */
+        /* 啟動按鈕 CSS */
         /* *************************************** */
+        .start-button {
+            background-color: #00FF00; /* 綠色，用於「啟動」 */
+            color: #121212;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 50px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.1s;
+            margin: 20px auto;
+            display: block;
+        }
+        .start-button:hover {
+            background-color: #39FF39;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
+            transform: scale(1.05);
+        }
 
+
+        /* *************************************** */
+        /* 火車動畫效果 CSS (持續運行，霓虹化) */
+        /* *************************************** */
         @keyframes trainMove {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100vw); }
         }
-
         .train-track {
-            height: 10px;
-            background: #555;
+            height: 5px;
+            background: #444;
             margin-top: 20px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
         }
-
         .train-effect {
             width: 150px;
             height: 30px;
-            background-color: #fdd835;
-            border: 2px solid #2a6a9b;
-            border-radius: 5px;
+            background-color: #00FFFF;
+            border: 2px solid #00FFFF;
+            border-radius: 2px;
             position: absolute;
-            bottom: -20px;
-            animation: trainMove 10s linear infinite;
+            bottom: -25px; 
+            box-shadow: 0 0 10px #00FFFF;
+            animation: trainMove 8s linear infinite;
         }
 
         /* *************************************** */
-        /* 新增的內容區域滑入效果 CSS */
+        /* 內容區域滑入效果 CSS (僅保留淡入，避免與分頁切換衝突) */
         /* *************************************** */
-
         @keyframes slideInFromLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-50px); /* 從左側 50px 的位置開始 */
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0); /* 移到最終位置 */
-            }
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-
-        /* 設定所有主要內容元素都使用滑入動畫，並在開始時隱藏 */
-        .container main > * { /* 針對 main 內的所有子元素 (h2, p, ul) */
-            opacity: 0;
+        /* 頁面載入時的滑入只對 header 應用，內文改為淡入 */
+        .container main {
             animation: slideInFromLeft 0.8s ease-out forwards;
         }
-
-        /* 設定動畫延遲，實現依序滑入 (Staggered Effect) */
-        .container main h2:nth-of-type(1), 
-        .container main p:nth-of-type(1) {
-            animation-delay: 0.3s; /* 簡介 (h2 + p) */
-        }
-        
-        .container main h2:nth-of-type(2), 
-        .container main ul:nth-of-type(1) {
-            animation-delay: 0.8s; /* 特色 (h2 + ul) */
-        }
-        
-        .container main h2:nth-of-type(3), 
-        .container main ul:nth-of-type(2) {
-            animation-delay: 1.3s; /* 社群 (h2 + ul) */
-        }
-
     </style>
 </head>
 <body>
     <header>
-        <h1>台灣西部縱貫鐵路模擬器</h1>
-        <p>帶你穿越西部縱貫鐵路的地景與車聲，體驗最貼近在地的列車運行！</p>
+        <h1>T.W.R.S. (Taiwan Western Longitudinal Railway Simulator)</h1>
+        <p id="status-message">:: SYSTEM BOOT SEQUENCE INITIATED ::</p>
     </header>
 
     <div class="container">
+        <button class="start-button" onclick="startSystem()">啟動模擬器</button>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'Overview')">專案概述</button>
+            <button class="tab-button" onclick="openTab(event, 'Features')">核心特色</button>
+            <button class="tab-button" onclick="openTab(event, 'System')">系統需求</button>
+            <button class="tab-button" onclick="openTab(event, 'Contact')">通訊介面</button>
+        </div>
+
         <main>
-            <h2>🚂 遊戲簡介</h2>
-            <p>「台灣西部環境鐵道模擬器」是一款以台灣西部縱貫線為核心、強調環境與地方特色還原的鐵道模擬體驗。玩家可操作車輛、體驗站務與營運規劃，或在開放伺服器與其他玩家共同建構與維護路網。</p>
+            <div id="Overview" class="tab-content active">
+                <h2>[SYSTEM] 專案概述 / PROJECT OVERVIEW</h2>
+                <p>「台灣西部環境鐵道模擬器」是一款以台灣西部縱貫線為核心、強調環境與地方特色還原的鐵道模擬體驗。玩家可操作車輛、體驗站務與營運規劃，或在開放伺服器與其他玩家共同建構與維護路網。</p>
+            </div>
 
-            <h2>✨ 重點特色</h2>
-            <ul>
-                <li>**真實還原地形與車站風貌**：沿線地景、橋梁、沿海與山城場景皆重視在地細節。</li>
-                <li>**多樣車種與駕駛模式**：支援客運、貨運、區間車與電聯車等多種列車操作。</li>
-                <li>**社群協作與活動**：定期活動、試運轉、RP（角色扮演）活動與伺服器社群支援。</li>
-            </ul>
+            <div id="Features" class="tab-content">
+                <h2>[DATA] 核心特色 / CORE FEATURES</h2>
+                <ul>
+                    <li>**真實還原地形與車站風貌**：沿線地景、橋梁、沿海與山城場景皆重視在地細節。</li>
+                    <li>**多樣車種與駕駛模式**：支援客運、貨運、區間車與電聯車等多種列車操作。</li>
+                    <li>**社群協作與活動**：定期活動、試運轉、RP（角色扮演）活動與伺服器社群支援。</li>
+                </ul>
+            </div>
 
-            <h2>🔗 社群與聯絡方式</h2>
-            <ul>
-                <li><a href="https://discord.gg/FbpAwmsxmt" target="_blank">官方 Discord 主群 (獲取最新資訊)</a></li>
-                <li><a href="https://youtube.com/@jiangbaogao?si=rHaSl29YXmjjaNh1" target="_blank">官方 YouTube 頻道</a></li>
-                <li><a href="https://www.tiktok.com/@jiangbaogao2?_r=1&_t=ZS-913ZdKAp30j" target="_blank">創辦人 TikTok</a></li>
-                <li>創辦電子信箱：jiangbaogao99@gmail.com</li>
-            </ul>
+            <div id="System" class="tab-content">
+                <h2>[CONFIG] 系統需求 / SYSTEM CONFIGURATION</h2>
+                <p>建議配置（PC/遊戲平台）：</p>
+                <ul>
+                    <li>**作業系統：** Windows 10 64-bit / 或平台相容需求</li>
+                    <li>**處理器：** 四核心或以上</li>
+                    <li>**記憶體：** 8GB RAM（建議 16GB）</li>
+                    <li>**顯示卡：** 支援 DirectX 11 的獨立顯示卡</li>
+                    <li>**儲存空間：** 至少 10GB 可用空間</li>
+                </ul>
+                <p style="color: #FFD700;">※ 若在 Roblox 等平台遊玩，請依平台官方需求確認。</p>
+            </div>
+
+            <div id="Contact" class="tab-content">
+                <h2>[CONNECT] 通訊介面 / CONTACT INTERFACE</h2>
+                <ul>
+                    <li><a href="https://discord.gg/FbpAwmsxmt" target="_blank">官方 Discord 主群 (獲取最新資訊)</a></li>
+                    <li><a href="https://youtube.com/@jiangbaogao?si=rHaSl29YXmjjaNh1" target="_blank">官方 YouTube 頻道</a></li>
+                    <li><a href="https://www.tiktok.com/@jiangbaogao2?_r=1&_t=ZS-913ZdKAp30j" target="_blank">創辦人 TikTok</a></li>
+                    <li>創辦電子信箱：jiangbaogao99@gmail.com</li>
+                </ul>
+            </div>
         </main>
     </div>
     
@@ -162,7 +254,57 @@
     </div>
     
     <footer>
-        &copy; 2025 Taiwan Western Longitudinal Railway Simulator 版權所有
+        :: © 2025 T.W.R.S. ALL RIGHTS RESERVED ::
     </footer>
+
+    <script>
+        // 1. 分頁切換功能 (Tab Switching Logic)
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+
+            // 隱藏所有分頁內容
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove('active');
+            }
+
+            // 移除所有按鈕的 active 狀態
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove('active');
+            }
+
+            // 顯示當前選中的分頁內容，並將按鈕設為 active
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // 2. 啟動按鈕功能 (Start Button Logic)
+        function startSystem() {
+            var statusElement = document.getElementById('status-message');
+            var startButton = document.querySelector('.start-button');
+            
+            startButton.disabled = true;
+            startButton.textContent = '載入中...';
+            startButton.style.backgroundColor = '#FFD700'; // 變成黃色
+            startButton.style.boxShadow = '0 0 15px rgba(255, 215, 0, 0.5)';
+            
+            // 模擬系統載入時間
+            setTimeout(function() {
+                statusElement.textContent = ':: TRAIN OPERATIONAL SYSTEM ONLINE ::';
+                startButton.textContent = '系統已啟動';
+                startButton.style.backgroundColor = '#FF0000'; // 變成紅色 (已啟動狀態)
+                startButton.style.boxShadow = '0 0 15px rgba(255, 0, 0, 0.5)';
+                startButton.style.cursor = 'default';
+            }, 1500); // 1.5 秒後完成載入
+        }
+        
+        // 3. 初始化：確保頁面載入時 Overview 標籤是啟動的
+        document.addEventListener("DOMContentLoaded", function(event) {
+            // 確保第一個 Tab (Overview) 在載入後顯示 (HTML 已經有 .active 了，這裡主要用於確保所有內容都已定義)
+            // 如果瀏覽器支援，這裡不需要額外操作
+        });
+
+    </script>
 </body>
 </html>
