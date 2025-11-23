@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台灣西部縱貫鐵路模擬器 官方網站</title>
     <style>
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
         /* 全局設定 & 酷炫背景 */
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -111,9 +111,9 @@
             border-radius: 10px 10px 0 0;
         }
         
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
         /* 互動內容 - 分頁 CSS 樣式 (省略未修改部分) */
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
         .tabs {
             border-bottom: 2px solid #00FFFF;
             margin-bottom: 20px;
@@ -156,9 +156,9 @@
             to { opacity: 1; }
         }
 
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
         /* 啟動按鈕 / Roblox 專屬按鈕 CSS (省略未修改部分) */
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
         .button-group {
             text-align: center;
             margin-bottom: 20px;
@@ -207,21 +207,21 @@
         }
 
 
-        /* *************************************** */
-        /* 火車動畫效果 CSS (修正顯示問題) */
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
+        /* 火車動畫效果 CSS (省略未修改部分) */
+        /* --- --- --- --- --- --- --- --- --- */
         @keyframes trainMove {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100vw); }
         }
         .train-track {
-            height: 50px; /* **增加軌道高度**，讓火車有足夠的空間顯示 */
+            height: 50px; 
             background: #444;
             margin-top: 20px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-            margin-left: 0; /* 修正 margin 讓它保持全寬 */
+            margin-left: 0; 
             margin-right: 0;
             width: 100%;
         }
@@ -232,14 +232,14 @@
             border: 2px solid #00FFFF;
             border-radius: 2px;
             position: absolute;
-            bottom: 5px; /* **將 bottom 向上調整**，讓火車出現在軌道上方 */
+            bottom: 5px; 
             box-shadow: 0 0 10px #00FFFF;
             animation: trainMove 8s linear infinite;
         }
 
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
         /* 內容區域滑入效果 CSS (省略未修改部分) */
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
         @keyframes slideInFromLeft {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -248,9 +248,9 @@
             animation: slideInFromLeft 0.8s ease-out forwards;
         }
 
-        /* *************************************** */
-        /* 手機適配響應式設計 (Responsive Design) */
-        /* *************************************** */
+        /* --- --- --- --- --- --- --- --- --- */
+        /* 手機適配響應式設計 (Responsive Design) (省略未修改部分) */
+        /* --- --- --- --- --- --- --- --- --- */
         @media (max-width: 768px) {
             .container {
                 width: 95%; 
@@ -326,9 +326,9 @@
             <div id="Features" class="tab-content">
                 <h2>[DATA] 核心特色 / CORE FEATURES</h2>
                 <ul>
-                    <li>**真實還原地形與車站風貌**：沿線地景、橋梁、沿海與山城場景皆重視在地細節。</li>
-                    <li>**多樣車種與駕駛模式**：支援客運、貨運、區間車與電聯車等多種列車操作。</li>
-                    <li>**社群協作與活動**：定期活動、試運轉、RP（角色扮演）活動與伺服器社群支援。</li>
+                    <li><strong>真實還原地形與車站風貌</strong>：沿線地景、橋梁、沿海與山城場景皆重視在地細節。</li>
+                    <li><strong>多樣車種與駕駛模式</strong>：支援客運、貨運、區間車與電聯車等多種列車操作。</li>
+                    <li><strong>社群協作與活動</strong>：定期活動、試運轉、RP（角色扮演）活動與伺服器社群支援。</li>
                 </ul>
             </div>
 
@@ -342,7 +342,7 @@
                     <li>**顯示卡：** 支援 DirectX 11 的獨立顯示卡</li>
                     <li>**儲存空間：** 至少 10GB 可用空間</li>
                 </ul>
-                <p style="color: #FFD700;">※ 由於本遊戲基於 **Roblox** 平台，請依 Roblox 官方需求確認您的設備相容性。</p>
+                <p style="color: #FFD700;">[NOTE] 由於本遊戲基於 <strong>Roblox</strong> 平台，請依 Roblox 官方需求確認您的設備相容性。</p>
             </div>
 
             <div id="Contact" class="tab-content">
@@ -402,7 +402,6 @@
         }
         
         document.addEventListener("DOMContentLoaded", function(event) {
-            // 頁面載入時的初始化邏輯
         });
     </script>
 </body>
