@@ -6,7 +6,7 @@
     <title>台灣西部縱貫鐵路模擬器 官方網站</title>
     <style>
         /* --- --- --- --- --- --- --- --- --- */
-        /* 全局設定 & 酷炫背景 */
+        /* 全局設定 & 酷炫背景 (未修改) */
         /* --- --- --- --- --- --- --- --- --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,6 +20,7 @@
             min-height: 100vh; 
             display: flex;
             flex-direction: column; 
+            position: relative; 
         }
 
         /* 漸變背景動畫 */
@@ -29,26 +30,46 @@
             100% { background-position: 0% 50%; }
         }
 
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            background-image: linear-gradient(0deg, transparent 96%, #00FFFF15 100%), 
+                              linear-gradient(90deg, transparent 96%, #00FFFF15 100%);
+            background-size: 50px 50px; 
+            opacity: 0.4; 
+            animation: gridScroll 10s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+        
         .container {
             width: 80%;
             max-width: 1100px;
             margin: 20px auto; 
             overflow: hidden;
-            background: rgba(30, 30, 30, 0.9); 
-            padding: 20px 40px;
-            border: 1px solid #00FFFF33;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+            background: rgba(30, 30, 30, 0.95); 
+            padding: 40px; 
+            border: 1px solid #00FFFF55;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4); 
             border-radius: 12px; 
             flex-grow: 1; 
+            min-height: 50vh; 
         }
         header {
-            background: rgba(10, 10, 10, 0.7); 
+            background: rgba(10, 10, 10, 0.85); 
             color: #00FFFF;
             padding: 25px 0;
             text-align: center;
             margin-bottom: 30px;
             border-bottom: 3px solid #00FFFF;
-            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.5);
             border-radius: 0 0 10px 10px; 
             position: sticky; 
             top: 0;
@@ -58,7 +79,7 @@
             margin: 0;
             font-size: 3em;
             letter-spacing: 5px;
-            text-shadow: 0 0 10px #00FFFF; 
+            text-shadow: 0 0 12px #00FFFF; 
         }
         header p {
             color: #a0a0a0;
@@ -221,8 +242,6 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-            margin-left: 0; 
-            margin-right: 0;
             width: 100%;
         }
         .train-effect {
@@ -233,7 +252,7 @@
             border-radius: 2px;
             position: absolute;
             bottom: 5px; 
-            box-shadow: 0 0 10px #00FFFF;
+            box-shadow: 0 0 15px #00FFFF, 0 0 5px #00FFFF inset; 
             animation: trainMove 8s linear infinite;
         }
 
@@ -254,18 +273,12 @@
         @media (max-width: 768px) {
             .container {
                 width: 95%; 
-                padding: 15px;
+                padding: 15px 15px 30px 15px; 
                 margin: 10px auto;
             }
             header h1 {
                 font-size: 2em; 
                 letter-spacing: 2px;
-            }
-            header p {
-                font-size: 0.9em;
-            }
-            h2 {
-                font-size: 1.5em;
             }
             .tab-button {
                 flex-basis: 48%; 
@@ -273,27 +286,16 @@
                 font-size: 0.9em;
                 padding: 10px 15px;
             }
-            .button-group button, .button-group a {
-                font-size: 1em; 
-                padding: 12px 20px;
-                margin: 5px;
-            }
-            .roblox-info {
-                font-size: 0.85em;
-            }
             .train-effect {
                 width: 100px; 
                 height: 20px;
-            }
-            .train-track {
-                margin-left: 0;
-                margin-right: 0;
-                width: 100%;
             }
         }
     </style>
 </head>
 <body>
+    <div class="grid-overlay"></div>
+
     <header>
         <h1>台灣西部縱貫鐵路模擬器</h1>
         <p id="status-message">:: SYSTEM BOOT SEQUENCE INITIATED ::</p>
@@ -321,14 +323,37 @@
             <div id="Overview" class="tab-content active">
                 <h2>[SYSTEM] 專案概述 / PROJECT OVERVIEW</h2>
                 <p>「台灣西部縱貫鐵路模擬器」是一款以台灣西部縱貫線為核心、強調環境與地方特色還原的鐵道模擬體驗。玩家可操作車輛、體驗站務與營運規劃，或在開放伺服器與其他玩家共同建構與維護路網。</p>
+                <hr style="border-color: #00FFFF33; margin: 15px 0;">
+                <p>
+                    <strong>:: 模擬範圍與目標 ::</strong>
+                    <br>
+                    本專案涵蓋西部幹線從基隆到高雄的完整路線，目標是以高精度還原沿線超過 **100 個車站**的建築與景觀細節。透過開放世界設計，我們打造了一個動態的世界系統，天氣與時間的變化將影響你的行駛體驗。
+                </p>
+                <p>
+                    <strong>:: 營運與合作 ::</strong>
+                    <br>
+                    除了駕駛火車，玩家還能參與排班、調度、執行客運或貨運任務。在多人連線模式下，玩家社群的合作與分工是維持整個西部路網順暢運行的關鍵要素。
+                </p>
             </div>
 
             <div id="Features" class="tab-content">
                 <h2>[DATA] 核心特色 / CORE FEATURES</h2>
                 <ul>
-                    <li><strong>真實還原地形與車站風貌</strong>：沿線地景、橋梁、沿海與山城場景皆重視在地細節。</li>
-                    <li><strong>多樣車種與駕駛模式</strong>：支援客運、貨運、區間車與電聯車等多種列車操作。</li>
-                    <li><strong>社群協作與活動</strong>：定期活動、試運轉、RP（角色扮演）活動與伺服器社群支援。</li>
+                    <li><strong>真實還原地形與車站風貌：</strong> 沿線地景、橋梁、沿海與山城場景皆重視在地細節，提供身臨其境的鐵道旅行感受。</li>
+                    <li><strong>多樣車種與駕駛模式：</strong> 支援客運、貨運、區間車與電聯車等多種列車操作。每種車輛都具備獨特的物理模型和駕駛室介面。</li>
+                    <li>
+                        <strong>高級信號與安全系統：</strong> 
+                        模擬真實的台鐵信號系統、號誌規則、以及列車自動保護系統（ATP）。要求玩家嚴格遵守速度限制和進路指示，挑戰專業級的駕駛精準度。
+                    </li>
+                    <li>
+                        <strong>動態天氣與日夜循環：</strong> 
+                        遊戲內建 24 小時動態時間系統和多變天氣效果（如暴雨、濃霧、夕陽），這些環境因素將直接影響軌道抓地力與駕駛視野，大幅提升操作難度與真實感。
+                    </li>
+                    <li>
+                        <strong>生涯模式與緊急事件：</strong> 
+                        提供從入門到專家級的排程運行任務，以及隨機發生的緊急狀況（如路障、設備故障），考驗玩家的應變能力，解鎖新的職位與列車。
+                    </li>
+                    <li>**社群協作與活動：** 定期舉辦試運轉、RP（角色扮演）活動、競速挑戰，並提供強大的伺服器社群工具支援玩家自發性的營運與路網維護。</li>
                 </ul>
             </div>
 
